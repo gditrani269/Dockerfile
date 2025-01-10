@@ -1,0 +1,27 @@
+1 - Generar la imagen de nombre "mysql-dockerfile" con el comando:
+podman build -t mysql-dockerfile .
+
+Verificar la misma haciendo:
+podman images
+REPOSITORY                               TAG         IMAGE ID      CREATED        SIZE
+localhost/mysql-dockerfile               latest      4ec00f149533  5 days ago     621 MB
+
+
+2 - Para tener una DB con persistencia vamos a usar un volumen en el host, para eso creo el volumen: "mysql-db-data" con:
+podman volume create mysql-db-data
+
+verificar la creacion del volumen con:
+podman volume inspect mysql-db-data
+[
+     {
+          "Name": "mysql-db-data",
+...
+
+3 - para ejecutar la imagen "mysql-dockerfile" montandole el volumen "mysql-db-data":
+podman run -v mysql-db-data:/var/lib/mysql -p 3306:3306 --name mysql-dockerfile -e MYSQL_ROOT_PASSWORD=sasa1234 -d mysql-dockerfile
+
+3.1 - para ejecutar la imagen "mysql-dockerfile" montandole el volumen "mysql-db-data" y ademas compartiendo una carpeta entre el host y el pod (puede ser util para pasar scripts al pod desde el host):
+podman run -v C:\Users\papa\n\desa\Dockerfile\mysql:/home -v mysql-db-data:/var/lib/mysql -p 3306:3306 --name mysql-dockerfile -e MYSQL_ROOT_PASSWORD=sasa1234 -d mysql-dockerfile
+
+o tambien con:
+podman run -v /mnt/c/Users/papa/n/desa/Dockerfile/mysql:/home -v mysql-db-data:/var/lib/mysql -p 3306:3306 --name mysql-dockerfile -e MYSQL_ROOT_PASSWORD=sasa1234 -d mysql-dockerfile
