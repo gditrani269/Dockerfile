@@ -25,3 +25,12 @@ podman run -v C:\Users\papa\n\desa\Dockerfile\mysql:/home -v mysql-db-data:/var/
 
 o tambien con:
 podman run -v /mnt/c/Users/papa/n/desa/Dockerfile/mysql:/home -v mysql-db-data:/var/lib/mysql -p 3306:3306 --name mysql-dockerfile -e MYSQL_ROOT_PASSWORD=sasa1234 -d mysql-dockerfile
+
+4 - Ingresar al pod creado con:
+podman exec -ti <ID-del-pod> /bin/bash
+
+ir a la carpeta homo:
+cd home
+
+ejecutar el script: carga-inicial.sh (este script llama a dos script sql que crean la base "options" y crean y populan la tabla "History" dentro de dicha base)
+./carga-inicial.sh
