@@ -18,6 +18,8 @@ FROM docker.io/library/mysql:latest
 COPY ./create-db.sql /docker-entrypoint-initdb.d/
 COPY ./bma.sql /docker-entrypoint-initdb.d/
 
+COPY --chmod=777 ./carga-inicial.sh /home
+
 #RUN chmod -R 777 /var/lib/mysql
 
 # install war
