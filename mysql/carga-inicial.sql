@@ -1,3 +1,5 @@
+create database options;
+
 use options;
 
 CREATE TABLE History (nombre VARCHAR(100) NOT NULL, fecha_oper DATE NOT NULL, apertura DECIMAL (10,4), maximo DECIMAL (10,4), minimo DECIMAL (10,4), cierre DECIMAL (10,4));

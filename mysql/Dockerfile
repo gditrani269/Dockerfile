@@ -15,10 +15,11 @@ FROM docker.io/library/mysql:latest
 #El directorio docker-entrypoint-initdb.d se utiliza para almacenar scripts de shell o SQL que desea que se ejecuten cuando se inicia un contenedor Docker por primera vez  
 #COPY --chmod=755 ./script.sql /home
 #COPY ./script.sql /docker-entrypoint-initdb.d/
-COPY ./create-db.sql /docker-entrypoint-initdb.d/
-COPY ./bma.sql /docker-entrypoint-initdb.d/
+#COPY ./create-db.sql /docker-entrypoint-initdb.d/
+#COPY ./bma.sql /docker-entrypoint-initdb.d/
 
 COPY --chmod=777 ./carga-inicial.sh /home
+COPY --chmod=777 ./carga-inicial.sql /home
 
 #RUN chmod -R 777 /var/lib/mysql
 
