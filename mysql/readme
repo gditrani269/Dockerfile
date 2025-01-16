@@ -27,7 +27,7 @@ o tambien con:
 podman run -v /mnt/c/Users/papa/n/desa/Dockerfile/mysql:/home -v mysql-db-data:/var/lib/mysql -p 3306:3306 --name mysql-dockerfile -e MYSQL_ROOT_PASSWORD=sasa1234 -d mysql-dockerfile
 
 4 - Ingresar al pod creado con:
-podman exec -ti <ID-del-pod> /bin/bash
+podman exec -ti <ID-del-pod> /bin/bash o con podman exec -ti mysql-dockerfile /bin/bash
 
 ir a la carpeta homo:
 cd home

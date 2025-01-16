@@ -1,0 +1,21 @@
+1 - Generar la imagen de nombre "python-dockerfile" con el comando:
+podman build -t mysql-dockerfile .
+
+1.1 - Generar la imagen de nombre "python-dockerfile-fastapi" con el comando:
+podman build -f Dockerfile-fastapi -t python-dockerfile-fastapi
+
+Verificar la misma haciendo:
+podman images
+REPOSITORY                               TAG         IMAGE ID      CREATED        SIZE
+localhost/mysql-dockerfile               latest      4ec00f149533  5 days ago     621 MB
+localhost/python-dockerfile-fastapi      latest      ec00ser49583  5 days ago     621 MB
+
+3. - para ejecutar la imagen "python-dockerfile"  y compartiendo una carpeta entre el host y el pod (puede ser util para pasar fuentes al pod desde el host):
+podman run -it -p 8080:80 -v /mnt/c/Users/l0646482/n/mi_desa2/python/getvalues:/home/desa/python/getvalues --name python-dockerfile python-dockerfile
+
+4 - Ingresar al pod creado con:
+podman exec -ti python-dockerfile /bin/bash
+
+con esto el servicio getValueStocks.py que se enceuntra en la carpeta /home/desa/python/getvalues ya se deberia estar ejecutado.
+Se puede verifica haciendo una llamada a 127.0.0.1:8080/getvalues desde el host
+o desde adentro del pod 127.0.0.1:80/getvalues
