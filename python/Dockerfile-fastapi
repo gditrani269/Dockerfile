@@ -10,27 +10,22 @@ FROM docker.io/dditrani/debian-python-1.0:latest
 
 #WORKDIR /home/desa/python/getvalues
 #INSTALACION para python
-#EJECUTAR los python con python3.11
-RUN pip install flask  && \  
+
+RUN pip3 install fastapi  && \  
+    pip3 install "uvicorn[standard]" && \
+    pip install mysql-connector-python &&\
     pip install curl_cffi
 
 
 
-#agregar en RUN los install necesarios para el desarrollo en python e indicar en CMD la ruta y archivo de lanzamiento
+#EJECUTAR la app python con uvicorn
 
-CMD python3.11 /home/desa/python/getvalues/getValueStocks.py 
+#CMD uvicorn home.desa.python.getvalues.main:app --host 0.0.0.0 --port 80  --reload
 #build
-# podman build -f Dockerfile22 -t python-dockerfile-fastapi
+# podman build -f dockerfile-fastapi -t dockerfile-fastapi
 
 #----------------------------------------------
-
-#RUN chmod -R 777 /var/lib/mysql
-
-# install war
-#COPY --chmod=755 build/libs /config/dropins
-
-#---------------------------------
 #DESPUES DE BUILDEAR LA IMAGEN PARA CORRER EL CONTAINER 
 
-#para ejecutar la imagen montandole un volumen contr el host:
-# podman run -it -p 8080:80 -v /mnt/c/Users/l0646482/n/mi_desa2/python/getvalues:/home/desa/python/getvalues --name python-dockerfile python-dockerfile
+#para ejecutar la imagen montandole un volumen contra el host:
+# podman run -it -p 8081:80 -v /mnt/c/Users/l0646482/n/mi_desa2/python/getvalues:/home/desa/python/getvalues --name dockerfile-fastapi dockerfile-fastapi
