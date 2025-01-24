@@ -28,4 +28,8 @@ RUN pip3 install fastapi  && \
 #DESPUES DE BUILDEAR LA IMAGEN PARA CORRER EL CONTAINER 
 
 #para ejecutar la imagen montandole un volumen contra el host:
+#para ejecutar en la VDI
 # podman run -it -p 8081:80 -v /mnt/c/Users/l0646482/n/mi_desa2/python/getvalues:/home/desa/python/getvalues --name dockerfile-fastapi dockerfile-fastapi
+
+#para ejecutar en la maquina W10
+#podman run -it -p 8081:80 -v /mnt/c/Users/papa/n/desa/python/getvalues:/home/desa/python/getvalues --name dockerfile-fastapi dockerfile-fastapi
